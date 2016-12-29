@@ -30,7 +30,6 @@ public class AndromedaCommands extends JavaPlugin implements CommandExecutor{
 	}
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String args[]) {
-		getLogger().info("Label: "+label);
 		if (commands.get(label) != null) {
 			GalaxyCommand gcmd = commands.get(label);
 			if (args.length < gcmd.minArgs) {
