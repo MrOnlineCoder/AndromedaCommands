@@ -11,7 +11,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.mronlinecoder.commands.GalaxyCommand;
 import com.mronlinecoder.commands.RageQuitCommand;
 
-public class AndromedaCommands extends JavaPlugin implements CommandExecutor{
+public class AndromedaCommands extends JavaPlugin implements CommandExecutor {
 	
 	HashMap<String, GalaxyCommand> commands = new HashMap<>();
 	
