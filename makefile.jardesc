@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="WINDOWS-1251" standalone="no"?>
+<jardesc>
+    <jar path="E:/DEVELOPMENT/Games/MC 1.7.2 server/plugins/Andromeda.jar"/>
+    <options buildIfNeeded="true" compress="false" descriptionLocation="/BukAndromeda/makefile.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="true" overwrite="true" saveDescription="true" storeRefactorings="true" useSourceFolders="false"/>
+    <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+    <selectedProjects/>
+    <manifest generateManifest="true" manifestLocation="" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
+        <sealing sealJar="false">
+            <packagesToSeal/>
+            <packagesToUnSeal/>
+        </sealing>
+    </manifest>
+    <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
+        <file path="/BukAndromeda/plugin.yml"/>
+        <file path="/BukAndromeda/.project"/>
+        <javaElement handleIdentifier="=BukAndromeda/src"/>
+        <file path="/BukAndromeda/.classpath"/>
+    </selectedElements>
+</jardesc>

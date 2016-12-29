@@ -1,0 +1,8 @@
+name: AndromedaCommands
+author: MrOnlineCoder
+version: 1.0.0
+main: com.mronlinecoder.AndromedaCommands
+commands:
+  ragequit:
+    description: Ragequit from server
+    aliases: rq
