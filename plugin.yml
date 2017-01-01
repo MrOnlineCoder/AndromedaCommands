@@ -6,3 +6,19 @@ commands:
   ragequit:
     description: Ragequit from server
     aliases: rq
+    permission: andromeda.ragequit
+  info:
+    description: Displays info about a player
+    permission: andromeda.info
+  ban:
+    description: Bans a player
+    permission: andromeda.ban
+  kick:
+    description: Kicks a player
+    permission: andromeda.kick
+  rank:
+    description: Changes player's rank
+    permission: andromeda.rank
+  join:
+    description: Joins the world
+    permission: andromeda.join
