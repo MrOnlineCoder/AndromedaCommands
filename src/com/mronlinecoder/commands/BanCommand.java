@@ -7,14 +7,19 @@ import org.bukkit.BanList;
 import org.bukkit.ChatColor;
 import org.bukkit.Server;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
 import com.mronlinecoder.GalaxyPlayer;
+import com.mronlinecoder.Rank;
 
 public class BanCommand extends GalaxyCommand{
-
-	public BanCommand() {
+	FileConfiguration cfg;
+	Rank rank = new Rank();
+	
+	public BanCommand(FileConfiguration config) {
 		super("/ban <player> [reason]", 1, "ban");
+		this.cfg = config;
 	}
 
 	@Override
@@ -31,6 +36,10 @@ public class BanCommand extends GalaxyCommand{
 		if (sender instanceof Player) {
 			Player ipl = (Player) sender;
 			issuer = ipl.getName();
+			if (!rank.isLower(rank.getRankName(target), cfg.getString("ranks."+rank.getRankName(issuer)+".canBan")) && GalaxyPlayer.exists(target)) {
+				ipl.sendMessage(ChatColor.GRAY+"You can't ban that player!");
+				return;
+			}
 		}
 		
 		reasonText = "Banned by "+issuer+": "+banReason;
@@ -50,7 +59,7 @@ public class BanCommand extends GalaxyCommand{
 			gIssuer.save();
 		}
 
-		server.broadcastMessage(ChatColor.RED+target+" was banned by "+issuer+":" + banReason);
+		server.broadcastMessage(ChatColor.RED+target+" was banned by "+issuer+": " + banReason);
 		server.getBanList(BanList.Type.NAME).addBan(target, reasonText, null, issuer);
 	}
 

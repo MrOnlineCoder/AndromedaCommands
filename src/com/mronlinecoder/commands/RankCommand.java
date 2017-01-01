@@ -6,19 +6,24 @@ import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Server;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
 import com.mronlinecoder.GalaxyPlayer;
+import com.mronlinecoder.Rank;
 
 public class RankCommand extends GalaxyCommand {
-
-	public RankCommand() {
+	FileConfiguration cfg;
+	Rank ranks = new Rank();
+	
+	public RankCommand(FileConfiguration config) {
 		super("/rank <player> <rank> [reason]", 2, "rank");
+		this.cfg = config;
 	}
 
 	@Override
 	public void run(Server server, CommandSender sender, String[] args) {
-		String rankReason = null;
+		String rankReason = "No reason given";
 		String target = args[0];
 		String rank = args[1];
 		String issuer = "Console";
@@ -32,11 +37,16 @@ public class RankCommand extends GalaxyCommand {
 			return;
 		}
 		
-		if (sender instanceof Player){
+		if (sender instanceof Player){			
 			GalaxyPlayer gIssuer = GalaxyPlayer.load(((Player) sender).getName());
+			issuer = gIssuer.getName();
+			if (!ranks.isLower(rank, cfg.getString("ranks."+ranks.getRankName(issuer)+".canRank"))) {
+				sender.sendMessage(ChatColor.GRAY+"You can't give so high rank!");
+				return;
+			}
+			
 			gIssuer.setPromotes(1);
 			gIssuer.save();
-			issuer = gIssuer.getName();
 		}
 		
 		GalaxyPlayer gTarget = GalaxyPlayer.load(target);

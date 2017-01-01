@@ -20,6 +20,7 @@ import com.mronlinecoder.commands.JoinCommand;
 import com.mronlinecoder.commands.KickCommand;
 import com.mronlinecoder.commands.RageQuitCommand;
 import com.mronlinecoder.commands.RankCommand;
+import com.mronlinecoder.commands.ReviewCommand;
 
 public class AndromedaCommands extends JavaPlugin implements CommandExecutor, Listener {
 	
@@ -45,14 +46,16 @@ public class AndromedaCommands extends JavaPlugin implements CommandExecutor, Li
 		}, 20, 1200);
 		getServer().getPluginManager().registerEvents(this, this);
 		registerCommands();
+		getLogger().info("Test: "+getConfig().getString("test"));
 	}
 	
 	public void registerCommands() {
 		commands.put("ragequit", new RageQuitCommand());
 		commands.put("info", new InfoCommand());
-		commands.put("ban", new BanCommand());
-		commands.put("kick", new KickCommand());
-		commands.put("rank", new RankCommand());
+		commands.put("ban", new BanCommand(getConfig()));
+		commands.put("kick", new KickCommand(getConfig()));
+		commands.put("rank", new RankCommand(getConfig()));
+		commands.put("review", new ReviewCommand());
 		commands.put("join", new JoinCommand());
 		
 		getCommand("join").setExecutor(this);
@@ -61,10 +64,11 @@ public class AndromedaCommands extends JavaPlugin implements CommandExecutor, Li
 		getCommand("ban").setExecutor(this);
 		getCommand("rank").setExecutor(this);
 		getCommand("kick").setExecutor(this);
+		getCommand("review").setExecutor(this);
 	}
 	
 	public void onDisable() {
-		
+		saveConfig();
 	}
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String args[]) {
