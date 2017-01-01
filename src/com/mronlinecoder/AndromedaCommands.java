@@ -14,6 +14,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.mronlinecoder.commands.BanCommand;
+import com.mronlinecoder.commands.BringCommand;
 import com.mronlinecoder.commands.GalaxyCommand;
 import com.mronlinecoder.commands.InfoCommand;
 import com.mronlinecoder.commands.JoinCommand;
@@ -47,7 +48,6 @@ public class AndromedaCommands extends JavaPlugin implements CommandExecutor, Li
 		}, 20, 1200);
 		getServer().getPluginManager().registerEvents(this, this);
 		registerCommands();
-		getLogger().info("Test: "+getConfig().getString("test"));
 	}
 	
 	public void registerCommands() {
@@ -59,6 +59,7 @@ public class AndromedaCommands extends JavaPlugin implements CommandExecutor, Li
 		commands.put("review", new ReviewCommand());
 		commands.put("join", new JoinCommand());
 		commands.put("unban", new UnbanCommand());
+		commands.put("bring", new BringCommand(getConfig()));
 		
 		
 		getCommand("join").setExecutor(this);
@@ -69,6 +70,7 @@ public class AndromedaCommands extends JavaPlugin implements CommandExecutor, Li
 		getCommand("kick").setExecutor(this);
 		getCommand("review").setExecutor(this);
 		getCommand("unban").setExecutor(this);
+		getCommand("bring").setExecutor(this);
 	}
 	
 	public void onDisable() {

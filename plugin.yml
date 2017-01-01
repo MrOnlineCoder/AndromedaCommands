@@ -28,3 +28,6 @@ commands:
   unban:
     description: Unbans a player
     permission: andromeda.unban
+  bring:
+    description: Teleports player to you
+    permission: andromeda.bring
