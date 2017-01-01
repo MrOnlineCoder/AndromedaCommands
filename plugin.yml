@@ -25,3 +25,6 @@ commands:
   review:
     description: Requests for review 
     permission: andromeda.review
+  unban:
+    description: Unbans a player
+    permission: andromeda.unban

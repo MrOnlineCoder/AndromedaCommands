@@ -21,6 +21,7 @@ import com.mronlinecoder.commands.KickCommand;
 import com.mronlinecoder.commands.RageQuitCommand;
 import com.mronlinecoder.commands.RankCommand;
 import com.mronlinecoder.commands.ReviewCommand;
+import com.mronlinecoder.commands.UnbanCommand;
 
 public class AndromedaCommands extends JavaPlugin implements CommandExecutor, Listener {
 	
@@ -57,6 +58,8 @@ public class AndromedaCommands extends JavaPlugin implements CommandExecutor, Li
 		commands.put("rank", new RankCommand(getConfig()));
 		commands.put("review", new ReviewCommand());
 		commands.put("join", new JoinCommand());
+		commands.put("unban", new UnbanCommand());
+		
 		
 		getCommand("join").setExecutor(this);
 		getCommand("ragequit").setExecutor(this);
@@ -65,6 +68,7 @@ public class AndromedaCommands extends JavaPlugin implements CommandExecutor, Li
 		getCommand("rank").setExecutor(this);
 		getCommand("kick").setExecutor(this);
 		getCommand("review").setExecutor(this);
+		getCommand("unban").setExecutor(this);
 	}
 	
 	public void onDisable() {
