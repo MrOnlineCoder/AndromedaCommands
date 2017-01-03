@@ -36,7 +36,7 @@ public class BanCommand extends GalaxyCommand{
 		if (sender instanceof Player) {
 			Player ipl = (Player) sender;
 			issuer = ipl.getName();
-			if (!rank.isLower(rank.getRankName(target), cfg.getString("ranks."+rank.getRankName(issuer)+".canBan")) && GalaxyPlayer.exists(target)) {
+			if (GalaxyPlayer.exists(target) && !rank.isLower(rank.getRankName(target), cfg.getString("ranks."+rank.getRankName(issuer)+".canBan"))) {
 				ipl.sendMessage(ChatColor.GRAY+"You can't ban that player!");
 				return;
 			}

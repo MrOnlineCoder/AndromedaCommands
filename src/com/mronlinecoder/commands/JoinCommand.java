@@ -23,6 +23,11 @@ public class JoinCommand extends GalaxyCommand {
 		
 		String world = args[0];
 		
+		/*if (!sender.hasPermission("andromeda.worlds."+world)) {
+			sender.sendMessage(ChatColor.GRAY+"You do not have permission to join that world!");
+			return;
+		}*/
+		
 		sender.sendMessage(ChatColor.GRAY+"Joining world "+ChatColor.GREEN+world);
 		server.dispatchCommand(server.getConsoleSender(), "mv tp "+pl.getName()+" "+world);
 	}

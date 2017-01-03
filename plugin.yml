@@ -31,3 +31,18 @@ commands:
   bring:
     description: Teleports player to you
     permission: andromeda.bring
+  addplayer:
+    description: Adds a player to database (USE WISELY)
+    permission: andromeda.addplayer
+  banx:
+    description: Bans player and undoes ALL his changes
+    permission: andromeda.banx
+  undox:
+    description: Undoes changes made by player
+    permission: andromeda.undox
+  gen:
+    description: Creates a new world
+    permission: andromeda.gen
+  wbuild:
+    description: Changes world's minimum build rank
+    permission: andromeda.wbuild
