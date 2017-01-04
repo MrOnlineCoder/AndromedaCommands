@@ -1,3 +1,4 @@
 bin
 .settings
 makefile.jardesc
+src/com/mronlinecoder/commands/SecretCommand.java

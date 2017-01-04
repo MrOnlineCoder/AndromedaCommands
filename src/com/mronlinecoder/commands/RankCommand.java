@@ -49,14 +49,21 @@ public class RankCommand extends GalaxyCommand {
 			gIssuer.save();
 		}
 		
+		if (target.equals(issuer)) {
+			sender.sendMessage(ChatColor.GRAY+"You can't change rank for yourself.");
+			return;
+		}
+		
 		GalaxyPlayer gTarget = GalaxyPlayer.load(target);
 		gTarget.setRankChanger(issuer);
 		gTarget.setRankReason(rankReason);
 		gTarget.save();
 		
 		server.dispatchCommand(server.getConsoleSender(), "pex user "+target+" group set "+rank);
+		server.dispatchCommand(server.getConsoleSender(), "pex reload");
 		server.broadcastMessage(ChatColor.GREEN+issuer+ChatColor.GRAY+" changed "+ChatColor.GREEN+target+ChatColor.GRAY+"'s rank to "+ChatColor.GREEN+rank+ChatColor.GRAY+":");
 		server.broadcastMessage(ChatColor.GRAY+rankReason);
+		
 		
 	}
 

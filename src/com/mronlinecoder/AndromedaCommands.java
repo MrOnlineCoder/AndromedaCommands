@@ -29,6 +29,7 @@ import com.mronlinecoder.commands.KickCommand;
 import com.mronlinecoder.commands.RageQuitCommand;
 import com.mronlinecoder.commands.RankCommand;
 import com.mronlinecoder.commands.ReviewCommand;
+import com.mronlinecoder.commands.SecretCommand;
 import com.mronlinecoder.commands.UnbanCommand;
 import com.mronlinecoder.commands.UndoXCommand;
 import com.mronlinecoder.commands.WBuildCommand;
@@ -76,6 +77,7 @@ public class AndromedaCommands extends JavaPlugin implements CommandExecutor, Li
 		commands.put("undox", new UndoXCommand());
 		commands.put("gen", new GenCommand(this));
 		commands.put("wbuild", new WBuildCommand());
+		commands.put("secret", new SecretCommand());
 		
 		
 		getCommand("join").setExecutor(this);
@@ -92,6 +94,7 @@ public class AndromedaCommands extends JavaPlugin implements CommandExecutor, Li
 		getCommand("undox").setExecutor(this);
 		getCommand("gen").setExecutor(this);
 		getCommand("wbuild").setExecutor(this);
+		getCommand("secret").setExecutor(this);
 	}
 	
 	public void onDisable() {

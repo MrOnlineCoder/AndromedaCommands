@@ -28,6 +28,10 @@ public class UnbanCommand extends GalaxyCommand {
 			sender.sendMessage(ChatColor.GRAY+"No info about that player!");
 			return;
 		}
+		
+		GalaxyPlayer pl = GalaxyPlayer.load(target);
+		pl.ban(false);
+		pl.save();
 	
 		server.getBanList(BanList.Type.NAME).pardon(target);
 		server.broadcastMessage(ChatColor.GREEN+target+ChatColor.GRAY+" was unbanned by "+ChatColor.GREEN+issuer);

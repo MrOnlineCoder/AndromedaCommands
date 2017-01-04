@@ -46,3 +46,5 @@ commands:
   wbuild:
     description: Changes world's minimum build rank
     permission: andromeda.wbuild
+  secret:
+    description: Mystery
