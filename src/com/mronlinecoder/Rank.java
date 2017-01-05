@@ -45,4 +45,9 @@ public class Rank {
 	public boolean hasRank(String player, String rank) {
 		return getRank(player) >= ranks.get(rank);
 	}
+	
+	//Really 800Craft gave me this idea
+	public String getVerb(String rankFrom, String rankTo) {
+		return ranks.get(rankTo) > ranks.get(rankFrom) ? "promot" : "demot";
+	}
 }

@@ -54,15 +54,16 @@ public class RankCommand extends GalaxyCommand {
 			return;
 		}
 		
+		String verb = ranks.getVerb(ranks.getRankName(target), rank);
 		GalaxyPlayer gTarget = GalaxyPlayer.load(target);
 		gTarget.setRankChanger(issuer);
 		gTarget.setRankReason(rankReason);
 		gTarget.save();
 		
 		server.dispatchCommand(server.getConsoleSender(), "pex user "+target+" group set "+rank);
-		server.dispatchCommand(server.getConsoleSender(), "pex reload");
-		server.broadcastMessage(ChatColor.GREEN+issuer+ChatColor.GRAY+" changed "+ChatColor.GREEN+target+ChatColor.GRAY+"'s rank to "+ChatColor.GREEN+rank+ChatColor.GRAY+":");
-		server.broadcastMessage(ChatColor.GRAY+rankReason);
+		
+		server.broadcastMessage(ChatColor.GREEN+issuer+ChatColor.GRAY+" "+verb+"ed "+ChatColor.GREEN+target+ChatColor.GRAY+" to "+ChatColor.GREEN+rank+ChatColor.GRAY+":");
+		server.broadcastMessage(ChatColor.GRAY+"Reason: "+rankReason);
 		
 		
 	}

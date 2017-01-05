@@ -48,6 +48,11 @@ public class KickCommand extends GalaxyCommand{
 			}
 		}
 		
+		if (target.equals(issuer)) {
+			sender.sendMessage(ChatColor.GRAY+"You can't kick yourself. Say \"kick me\" to get kicked.");
+			return;
+		}
+		
 		
 		GalaxyPlayer gIssuer = GalaxyPlayer.load(issuer);
 		gIssuer.setKicks(1);

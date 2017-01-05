@@ -3,6 +3,7 @@ package com.mronlinecoder;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -13,6 +14,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -40,6 +42,9 @@ public class AndromedaCommands extends JavaPlugin implements CommandExecutor, Li
 	Rank rank = new Rank();
 	ArrayList<String> cannotBuild = new ArrayList<>();
 	
+	//To save server HDD/SSD lifetime and perfomance speed, we use this "queue" to apply changes to PlayerDB every 1 minute.
+	HashMap<String, Integer> chatQueue = new HashMap<>();
+	
 	public void onEnable() {
 
 		File folder = new File("plugins/Andromeda/players");
@@ -55,6 +60,15 @@ public class AndromedaCommands extends JavaPlugin implements CommandExecutor, Li
 					GalaxyPlayer gpl = GalaxyPlayer.load(pl.getName());
 					gpl.setTime(1);
 					gpl.save();
+				}
+				
+				for (Map.Entry<String, Integer> entry : chatQueue.entrySet()) {
+				    String key = entry.getKey();
+				    int value = entry.getValue();
+					GalaxyPlayer gp = GalaxyPlayer.load(key);
+					gp.setMessages(value);
+					gp.save();
+					chatQueue.remove(key);
 				}
 			}
 		}, 20, 1200);
@@ -174,6 +188,27 @@ public class AndromedaCommands extends JavaPlugin implements CommandExecutor, Li
 				cannotBuild.remove(pl.getName());
 			}
 		}
+	}
+	
+	@EventHandler
+	public void onChat(AsyncPlayerChatEvent e) {
+		if (e.isCancelled()) {
+			return;
+		}
+		if (e.getMessage().startsWith("/")) {
+			return;
+		}
+		
+		if (e.getMessage().equalsIgnoreCase("kick me")) {
+			getServer().dispatchCommand(getServer().getConsoleSender(), "kick "+e.getPlayer().getName()+" No problem.");
+		}
+		
+		if (chatQueue.get(e.getPlayer().getName()) == null) {
+			chatQueue.put(e.getPlayer().getName(), 1);
+		} else {
+			chatQueue.put(e.getPlayer().getName(), chatQueue.get(e.getPlayer().getName())+1);
+		}
+		
 	}
 }
 

@@ -15,6 +15,7 @@ public class GalaxyPlayer {
 	public String rankChanger;
 	public int time;
 	public boolean isBanned;
+	public int messages;
 	public static final String folderName = "plugins/Andromeda/players/";
 	
 	public static GalaxyPlayer load(String name) {
@@ -26,12 +27,12 @@ public class GalaxyPlayer {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			GalaxyPlayer temp = new GalaxyPlayer(name, 0, 0, 0, 0, "Welcome to our server!", "<Console>", 0, false);
+			GalaxyPlayer temp = new GalaxyPlayer(name, 0, 0, 0, 0, "Welcome to our server!", "<Console>", 0, false, 0);
 			temp.save();
 			return temp;
 		}
 		YamlConfiguration yml = YamlConfiguration.loadConfiguration(f);
-		GalaxyPlayer temp = new GalaxyPlayer(name, yml.getInt("logins"), yml.getInt("kicks"), yml.getInt("promotes"), yml.getInt("bans"), yml.getString("rankReason"), yml.getString("rankChanger"), yml.getInt("time"), yml.getBoolean("isBanned"));
+		GalaxyPlayer temp = new GalaxyPlayer(name, yml.getInt("logins"), yml.getInt("kicks"), yml.getInt("promotes"), yml.getInt("bans"), yml.getString("rankReason"), yml.getString("rankChanger"), yml.getInt("time"), yml.getBoolean("isBanned"), yml.getInt("messages"));
 		return temp;
 	}
 	
@@ -50,6 +51,7 @@ public class GalaxyPlayer {
 		yml.set("rankReason", rankReason);
 		yml.set("time", time);
 		yml.set("isBanned", isBanned);
+		yml.set("messages", messages);
 		try {
 			yml.save(f);
 		} catch(IOException e) {
@@ -132,10 +134,12 @@ public class GalaxyPlayer {
 	public int getBans() {
 		return bans;
 	}
+	
+	
 
 	public GalaxyPlayer(String name, int logins, int kicks, int promotes,
 			int bans, String rankReason, String rankChanger, int time,
-			boolean isBanned) {
+			boolean isBanned, int messages) {
 		this.name = name;
 		this.logins = logins;
 		this.kicks = kicks;
@@ -145,5 +149,14 @@ public class GalaxyPlayer {
 		this.rankChanger = rankChanger;
 		this.time = time;
 		this.isBanned = isBanned;
+		this.messages = messages;
+	}
+
+	public int getMessages() {
+		return messages;
+	}
+
+	public void setMessages(int delta) {
+		this.messages += delta;
 	}
 }

@@ -42,6 +42,11 @@ public class BanCommand extends GalaxyCommand{
 			}
 		}
 		
+		if (target.equals(issuer)) {
+			sender.sendMessage(ChatColor.GRAY+"You can't ban yourself.");
+			return;
+		}
+		
 		reasonText = "Banned by "+issuer+": "+banReason;
 		
 		Player pl = server.getPlayer(target);

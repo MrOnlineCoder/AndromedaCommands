@@ -49,6 +49,11 @@ public class BanXCommand extends GalaxyCommand {
 			}
 		}
 		
+		if (target.equals(issuer)) {
+			sender.sendMessage(ChatColor.GRAY+"You can't ban yourself.");
+			return;
+		}
+		
 		if (!confirmations.contains(issuer)) {
 			confirmations.add(issuer);
 			showWarning(sender);
