@@ -1,5 +1,7 @@
 package com.mronlinecoder.commands;
 
+import java.util.logging.Logger;
+
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Server;
@@ -28,6 +30,7 @@ public class ReviewCommand extends GalaxyCommand {
 		}
 		
 		pl.sendMessage(ChatColor.GREEN+pl.getName()+ChatColor.GOLD+" would like staff to review their building.");
+		Logger.getLogger("AndromedaCore").info("Review: Player "+pl.getName()+" asked for a review in world "+pl.getWorld().getName());
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.mronlinecoder.commands;
 
+import java.util.logging.Logger;
+
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Server;
@@ -28,6 +30,7 @@ public class RageQuitCommand extends GalaxyCommand {
 		
 		server.broadcastMessage(ChatColor.DARK_RED+ pl.getName()+" Ragequit from server!");
 		pl.kickPlayer(reason);
+		Logger.getLogger("AndromedaCore").info("Ragequit: Player "+pl.getName()+" Ragequit from server.");
 	}
 
 }

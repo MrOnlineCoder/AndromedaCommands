@@ -1,5 +1,7 @@
 package com.mronlinecoder.commands;
 
+import java.util.logging.Logger;
+
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Server;
@@ -20,6 +22,7 @@ public class UndoXCommand extends GalaxyCommand {
 		
 		server.dispatchCommand(server.getConsoleSender(), "coreprotect rollback u:"+target+" t:"+timespan);
 		sender.sendMessage(ChatColor.GRAY+"Changes made by "+ChatColor.GREEN+target+ChatColor.GRAY+" have been undone.");
+		Logger.getLogger("AndromedaCore").info("UndoX: "+target+"'s changes were undone by "+sender.getName()+" in timespan "+timespan);
 	}
 
 }

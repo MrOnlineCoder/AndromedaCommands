@@ -2,6 +2,7 @@ package com.mronlinecoder.commands;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.logging.Logger;
 
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.BanList;
@@ -92,6 +93,7 @@ public class BanXCommand extends GalaxyCommand {
 			server.broadcastMessage(ChatColor.RED+target+" was BanX'd by "+issuer);
 			server.getBanList(BanList.Type.NAME).addBan(target, banReason, null, issuer);
 			confirmations.remove(issuer);
+			Logger.getLogger("AndromedaCore").info("BanX: Player "+target+" was BanX'd by "+issuer);
 		}
 
 	}

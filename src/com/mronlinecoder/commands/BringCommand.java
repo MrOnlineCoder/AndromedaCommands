@@ -1,6 +1,7 @@
 package com.mronlinecoder.commands;
 
 import java.util.Arrays;
+import java.util.logging.Logger;
 
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;
@@ -45,5 +46,6 @@ public class BringCommand  extends GalaxyCommand{
 		issuerPl.sendMessage(ChatColor.GRAY+"Teleporting...");
 		targetPl.sendMessage(ChatColor.GRAY+"You have been teleported by "+ChatColor.GREEN+issuerPl.getName());
 		targetPl.teleport(issuerPl.getLocation());
+		Logger.getLogger("AndromedaCore").info("Bring: Player "+target+" was teleported to "+issuerPl.getName());
 	}
 }

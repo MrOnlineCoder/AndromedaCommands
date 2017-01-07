@@ -1,6 +1,7 @@
 package com.mronlinecoder.commands;
 
 import java.util.Arrays;
+import java.util.logging.Logger;
 
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;
@@ -64,6 +65,8 @@ public class RankCommand extends GalaxyCommand {
 		
 		server.broadcastMessage(ChatColor.GREEN+issuer+ChatColor.GRAY+" "+verb+"ed "+ChatColor.GREEN+target+ChatColor.GRAY+" to "+ChatColor.GREEN+rank+ChatColor.GRAY+":");
 		server.broadcastMessage(ChatColor.GRAY+"Reason: "+rankReason);
+		
+		Logger.getLogger("AndromedaCore").info("Rank: Successfully changed "+target+"'s rank to "+rank);
 		
 		
 	}

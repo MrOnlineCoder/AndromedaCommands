@@ -1,5 +1,7 @@
 package com.mronlinecoder.commands;
 
+import java.util.logging.Logger;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Server;
 import org.bukkit.command.CommandSender;
@@ -26,6 +28,7 @@ public class WBuildCommand  extends GalaxyCommand {
 		
 		pl.sendMessage(ChatColor.GRAY+"Build rank for world "+ChatColor.GREEN+world+ChatColor.GRAY+" has been set to "+ChatColor.GREEN+rank);
 		server.getPluginManager().getPlugin("Andromeda").getConfig().set("worlds."+world+".build", rank);
+		Logger.getLogger("AndromedaCore").info("WBuild: Player "+pl.getName()+" changed "+world+" build level to "+rank);
 	}
 
 }

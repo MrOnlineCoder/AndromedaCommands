@@ -1,5 +1,7 @@
 package com.mronlinecoder.commands;
 
+import java.util.logging.Logger;
+
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Server;
@@ -37,6 +39,7 @@ public class GenCommand extends GalaxyCommand {
 			}
 		}, 60);
 		server.broadcastMessage(ChatColor.GREEN+issuer+ChatColor.GRAY+" created a new world "+ChatColor.GREEN+world);
+		Logger.getLogger("AndromedaCore").info("Generate: Player "+issuer+" generated a new world "+world);
 	}
 	
 	

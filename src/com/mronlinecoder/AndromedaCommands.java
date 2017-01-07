@@ -1,9 +1,14 @@
 package com.mronlinecoder;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -41,9 +46,11 @@ public class AndromedaCommands extends JavaPlugin implements CommandExecutor, Li
 	HashMap<String, GalaxyCommand> commands = new HashMap<>();
 	Rank rank = new Rank();
 	ArrayList<String> cannotBuild = new ArrayList<>();
+	public Logger logger;
 	
 	//To save server HDD/SSD lifetime and perfomance speed, we use this "queue" to apply changes to PlayerDB every 1 minute.
 	HashMap<String, Integer> chatQueue = new HashMap<>();
+	
 	
 	public void onEnable() {
 
@@ -74,6 +81,22 @@ public class AndromedaCommands extends JavaPlugin implements CommandExecutor, Li
 		}, 20, 1200);
 		getServer().getPluginManager().registerEvents(this, this);
 		registerCommands();
+		logger = Logger.getLogger("AndromedaCore");
+        Logger.getLogger("AndromedaCore").setUseParentHandlers(false);
+		FileHandler fh;
+		 try {  
+		        fh = new FileHandler("plugins/Andromeda/andromeda_log.txt", true);  
+		        fh.setFormatter( new LogFormatter());  
+		        Logger.getLogger("AndromedaCore").addHandler(fh);
+
+		        Logger.getLogger("AndromedaCore").info("--- Server start up ---");  
+
+		    } catch (SecurityException e) {  
+		        e.printStackTrace();  
+		    } catch (IOException e) {  
+		        e.printStackTrace();  
+		 }  
+
 	}
 	
 	public void registerCommands() {
@@ -123,6 +146,7 @@ public class AndromedaCommands extends JavaPlugin implements CommandExecutor, Li
 				return false;
 			}
 			
+			logger.info("User "+sender.getName()+" issued a command: /"+label);
 			gcmd.run(getServer(), sender, args);
 		} else {
 			sender.sendMessage(ChatColor.GRAY+"Unknown command!");

@@ -1,5 +1,7 @@
 package com.mronlinecoder.commands;
 
+import java.util.logging.Logger;
+
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Server;
@@ -28,8 +30,14 @@ public class JoinCommand extends GalaxyCommand {
 			return;
 		}*/
 		
+		if (server.getWorld(world) == null) {
+			pl.sendMessage(ChatColor.GRAY+"That world doesn't exist!");
+			return;
+		}
+		
 		sender.sendMessage(ChatColor.GRAY+"Joining world "+ChatColor.GREEN+world);
 		server.dispatchCommand(server.getConsoleSender(), "mv tp "+pl.getName()+" "+world);
+		Logger.getLogger("AndromedaCore").info("Join: Player "+pl.getName()+" joined world "+world);
 	}
 
 }

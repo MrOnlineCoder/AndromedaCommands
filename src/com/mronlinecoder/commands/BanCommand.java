@@ -1,6 +1,7 @@
 package com.mronlinecoder.commands;
 
 import java.util.Arrays;
+import java.util.logging.Logger;
 
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.BanList;
@@ -66,6 +67,7 @@ public class BanCommand extends GalaxyCommand{
 
 		server.broadcastMessage(ChatColor.RED+target+" was banned by "+issuer+": " + banReason);
 		server.getBanList(BanList.Type.NAME).addBan(target, reasonText, null, issuer);
+		Logger.getLogger("AndromedaCore").info("Ban: Player "+target+" was banned by "+issuer+": "+banReason);
 	}
 
 }

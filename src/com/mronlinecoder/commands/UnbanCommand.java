@@ -1,5 +1,7 @@
 package com.mronlinecoder.commands;
 
+import java.util.logging.Logger;
+
 import org.bukkit.BanList;
 import org.bukkit.ChatColor;
 import org.bukkit.Server;
@@ -35,6 +37,7 @@ public class UnbanCommand extends GalaxyCommand {
 	
 		server.getBanList(BanList.Type.NAME).pardon(target);
 		server.broadcastMessage(ChatColor.GREEN+target+ChatColor.GRAY+" was unbanned by "+ChatColor.GREEN+issuer);
+		Logger.getLogger("AndromedaCore").info("Unban: Player "+issuer+" unbanned player "+target);
 	}
 
 }

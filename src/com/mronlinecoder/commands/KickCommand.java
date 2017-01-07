@@ -1,6 +1,7 @@
 package com.mronlinecoder.commands;
 
 import java.util.Arrays;
+import java.util.logging.Logger;
 
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;
@@ -61,5 +62,6 @@ public class KickCommand extends GalaxyCommand{
 		pl.kickPlayer(reasonText);
 		
 		server.broadcastMessage(ChatColor.RED+target+" was kicked by "+issuer+": " + kickReason);
+		Logger.getLogger("AndromedaCore").info("Kick: Player "+target+" was kicked by "+issuer+": "+kickReason);
 	}
 }
